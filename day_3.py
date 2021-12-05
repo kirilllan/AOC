@@ -34,8 +34,6 @@ def day3(arr):
       epsilon_rates += "0"
     gamma_zeros = 0
     gamma_ones = 0
-  gamma_rates_to_decimal = int(gamma_rates, 2)
-  return (int(gamma_rates, 2) * int(epsilon_rates, 2))
-
-        
-day3(ary)
+  return int(gamma_rates, 2) * int(epsilon_rates, 2)
+    
+#day3(ary)

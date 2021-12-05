@@ -16,19 +16,26 @@ ary = ['000010000011', '001010000111', '011010000010', '000011111110', '10110100
 
 def day3(arr):
   gamma_rates = ""
+  epsilon_rates = ""
   gamma_zeros = 0
   gamma_ones = 0
   current_index = -1
-  #epsilon_rates = 0
   for i in range(0, len(arr[0])):
     current_index += 1
     for ii in range(0, len(arr)):
-      if arr[ii][current_index] == 0: gamma_zeros += 1
-      if arr[ii][current_index] == 1: gamma_ones += 1
-    if gamma_zeros > gamma_ones: gamma_rates += 0
-    #else gamma_rates += 1
+      if i == current_index:
+        if arr[ii][current_index] == "0": gamma_zeros += 1
+        if arr[ii][current_index] == "1": gamma_ones += 1
+    if gamma_zeros > gamma_ones: 
+      gamma_rates += "0"
+      epsilon_rates += "1"
+    if gamma_zeros < gamma_ones: 
+      gamma_rates += "1"
+      epsilon_rates += "0"
     gamma_zeros = 0
     gamma_ones = 0
-  print(gamma_rates)
+  gamma_rates_to_decimal = int(gamma_rates, 2)
+  return (int(gamma_rates, 2) * int(epsilon_rates, 2))
+
         
 day3(ary)

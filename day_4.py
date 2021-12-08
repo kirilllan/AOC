@@ -18,7 +18,7 @@ def day4(bingo_cards):
           if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
           if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
+            print(int_sums * 98)
             return
           if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
@@ -48,32 +48,32 @@ def day4(bingo_cards):
 
 #part 2, last bingo is winner
 def day4_part2(bingo_cards):
-  scores = []
+  won_indexes = []
   draw_number = -1
-  loops_amount = len(number_announcement_order)
-  while loops_amount > 0:
+  while True:
+    uniques = list(dict.fromkeys(won_indexes))
+    if len(uniques) == len(bingo_cards):
+      print(uniques)
+      int_sums = sum(i for i in bingo_cards[83] if isinstance(i, int))
+      print(int_sums * announced_bingo_number)
+      return
+    #print(len(won_indexes), len(won_str))
     draw_number += 1
-    #if draw_number == len(number_announcement_order): break
     for i in range(0, len(bingo_cards)):#arr of arrays
-      for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums
+      for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums     
           announced_bingo_number = number_announcement_order[draw_number]
-
-          if (len(bingo_cards) == 1):
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-
           if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
           if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
-            bingo_cards.pop(i)
+            won_indexes.append(i)
           if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
-            bingo_cards.pop(i)
+            won_indexes.append(i)
           if ''.join(str(x) for x in bingo_cards[i][10:15]) == "":
-            bingo_cards.pop(i)
+            won_indexes.append(i)
           if ''.join(str(x) for x in bingo_cards[i][15:20]) == "":
-            bingo_cards.pop(i)
+            won_indexes.append(i)
           if ''.join(str(x) for x in bingo_cards[i][20:25]) == "":
-            bingo_cards.pop(i)
-  print(scores)
+            won_indexes.append(i)
+
 
 day4_part2(bingo_cards)
 #70000 too big

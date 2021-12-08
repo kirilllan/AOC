@@ -53,11 +53,9 @@ def day4_part2(bingo_cards):
   while True:
     uniques = list(dict.fromkeys(won_indexes))
     if len(uniques) == len(bingo_cards):
-      print(uniques)
-      int_sums = sum(i for i in bingo_cards[83] if isinstance(i, int))
+      int_sums = sum(i for i in bingo_cards[uniques[-1]] if isinstance(i, int))
       print(int_sums * announced_bingo_number)
       return
-    #print(len(won_indexes), len(won_str))
     draw_number += 1
     for i in range(0, len(bingo_cards)):#arr of arrays
       for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums     
@@ -80,3 +78,4 @@ day4_part2(bingo_cards)
 #6400 too low
 #9604 too high
 #7840 wrong answer, 5 min penalty
+#8224 was right

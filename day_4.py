@@ -19,6 +19,45 @@ def day4(bingo_cards):
           if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
+            return
+          if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
+            return
+          if ''.join(str(x) for x in bingo_cards[i][10:15]) == "":
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
+            return
+          if ''.join(str(x) for x in bingo_cards[i][15:20]) == "":
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
+            return
+          if ''.join(str(x) for x in bingo_cards[i][20:25]) == "":
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
+            return
+    
+day4(bingo_cards)
+#15130 too low
+#2957 too low
+#534545 too high
+#28082 wa righ one
+
+# took like ~30 min, had to manipulate input data with regex and doing replacements with IDE for better formating
+
+
+#part 2, last bingo is winner
+def day4_part2(bingo_cards):
+  draw_number = -1
+  while True:
+    draw_number += 1
+    for i in range(0, len(bingo_cards)):#arr of arrays
+      for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums
+          announced_bingo_number = number_announcement_order[draw_number]
+          if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
+          if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
             exit()
           if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
@@ -36,11 +75,5 @@ def day4(bingo_cards):
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
             exit()
-    
-day4(bingo_cards)
-#15130 too low
-#2957 too low
-#534545 too high
-#28082 wa righ one
 
-# took like ~30 min, had to manipulate input data with regex and doing replacements with IDE for better formating
+day4_part2()

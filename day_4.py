@@ -37,7 +37,7 @@ def day4(bingo_cards):
             print(int_sums * announced_bingo_number)
             return
     
-day4(bingo_cards)
+#day4(bingo_cards)
 #15130 too low
 #2957 too low
 #534545 too high
@@ -48,32 +48,35 @@ day4(bingo_cards)
 
 #part 2, last bingo is winner
 def day4_part2(bingo_cards):
+  scores = []
   draw_number = -1
-  while True:
+  loops_amount = len(number_announcement_order)
+  while loops_amount > 0:
     draw_number += 1
+    #if draw_number == len(number_announcement_order): break
     for i in range(0, len(bingo_cards)):#arr of arrays
       for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums
           announced_bingo_number = number_announcement_order[draw_number]
+
+          if (len(bingo_cards) == 1):
+            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
+            print(int_sums * announced_bingo_number)
+
           if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
           if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            bingo_cards.pop(i)
           if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            bingo_cards.pop(i)
           if ''.join(str(x) for x in bingo_cards[i][10:15]) == "":
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            bingo_cards.pop(i)
           if ''.join(str(x) for x in bingo_cards[i][15:20]) == "":
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            bingo_cards.pop(i)
           if ''.join(str(x) for x in bingo_cards[i][20:25]) == "":
-            int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            bingo_cards.pop(i)
+  print(scores)
 
-day4_part2()
+day4_part2(bingo_cards)
+#70000 too big
+#6400 too low
+#9604 too high
+#7840 wrong answer, 5 min penalty

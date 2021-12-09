@@ -18,29 +18,64 @@ def day4(bingo_cards):
           if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
           if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
-            print(int_sums * announced_bingo_number)
-            exit()
+            print(int_sums * 98)
+            return
           if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
-            exit()
+            return
           if ''.join(str(x) for x in bingo_cards[i][10:15]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
-            exit()
+            return
           if ''.join(str(x) for x in bingo_cards[i][15:20]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
-            exit()
+            return
           if ''.join(str(x) for x in bingo_cards[i][20:25]) == "":
             int_sums = sum(i for i in bingo_cards[i] if isinstance(i, int))
             print(int_sums * announced_bingo_number)
-            exit()
+            return
     
-day4(bingo_cards)
+#day4(bingo_cards)
 #15130 too low
 #2957 too low
 #534545 too high
 #28082 wa righ one
 
 # took like ~30 min, had to manipulate input data with regex and doing replacements with IDE for better formating
+
+
+#part 2, last bingo is winner
+def day4_part2(bingo_cards):
+  won_indexes = []
+  draw_number = -1
+  while True:
+    uniques = list(dict.fromkeys(won_indexes))
+    if len(uniques) == len(bingo_cards):
+      int_sums = sum(i for i in bingo_cards[uniques[-1]] if isinstance(i, int))
+      print(int_sums * announced_bingo_number)
+      return
+    draw_number += 1
+    for i in range(0, len(bingo_cards)):#arr of arrays
+      for bingo_num in range(0, len(bingo_cards[i])):#array of bingo nums     
+          announced_bingo_number = number_announcement_order[draw_number]
+          if bingo_cards[i][bingo_num] == announced_bingo_number: bingo_cards[i][bingo_num] = ""
+          if ''.join(str(x) for x in bingo_cards[i][:5]) == "":
+            won_indexes.append(i)
+          if ''.join(str(x) for x in bingo_cards[i][5:10]) == "":
+            won_indexes.append(i)
+          if ''.join(str(x) for x in bingo_cards[i][10:15]) == "":
+            won_indexes.append(i)
+          if ''.join(str(x) for x in bingo_cards[i][15:20]) == "":
+            won_indexes.append(i)
+          if ''.join(str(x) for x in bingo_cards[i][20:25]) == "":
+            won_indexes.append(i)
+
+
+day4_part2(bingo_cards)
+#70000 too big
+#6400 too low
+#9604 too high
+#7840 wrong answer, 5 min penalty
+#8224 was right

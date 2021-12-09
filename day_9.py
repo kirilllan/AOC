@@ -4,7 +4,7 @@ ary=[['9987675345698765453987654321234589999899878923493212345678999998656782467
 
 def day9(arr):
   low_points_total_sum = 0
-  for i in range(0, len(arr)):
+  for i in range(1, len(arr) - 1):
     arr[i] = ''.join(arr[i])
     for j in range(0, len(arr[i])):
       n1 = -1
@@ -29,6 +29,44 @@ def day9(arr):
         n4 = 0
       cur_num = int(arr[i][j])
       if n1 > cur_num and n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
+
+  for top_arr_indexes in range(0, 100):
+    n1 = -1
+    n2 = -1
+    n3 = -1
+    try:
+      n1 = int(''.join(arr[0])[top_arr_indexes - 1])
+    except IndexError:
+      n1 = 0
+    try:
+      n2 = int(''.join(arr[0])[top_arr_indexes + 1])
+    except IndexError:
+      n2 = 0
+    try:
+      n3 = int(''.join(arr[1])[top_arr_indexes])
+    except IndexError:
+      n3 = 0
+    cur_num = int(''.join(arr[0])[top_arr_indexes])
+    if n1 > cur_num and n2 > cur_num and n3 > cur_num: low_points_total_sum += cur_num + 1
+
+  for bottom_arr_indexes in range(0, 100):
+    n1 = -1
+    n2 = -1
+    n3 = -1
+    try:
+      n1 = int(''.join(arr[0])[bottom_arr_indexes - 1])
+    except IndexError:
+      n1 = 0
+    try:
+      n2 = int(''.join(arr[0])[bottom_arr_indexes + 1])
+    except IndexError:
+      n2 = 0
+    try:
+      n3 = int(''.join(arr[1])[bottom_arr_indexes])
+    except IndexError:
+      n3 = 0
+    cur_num = int(''.join(arr[0])[bottom_arr_indexes])
+    if n1 > cur_num and n2 > cur_num and n3 > cur_num: low_points_total_sum += cur_num + 1
 
   print(low_points_total_sum) 
   return

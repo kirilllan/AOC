@@ -5,4 +5,4 @@ def readFile(fileName):
   print(words)
   return words
 
-readFile('day_4_bingo_boards')
+readFile('day_5_input')

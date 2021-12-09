@@ -19,3 +19,21 @@ def day5(arr):
   print(points_grid) 
 
 day5(ary)
+
+
+
+
+### took too much time for me. not interested in completing. answer from web:
+import numpy as np
+
+grid = np.zeros((2, 1000, 1000))
+ls = np.fromregex(open(0), '\d+', [('',int)]*4)
+
+for (x, y, X, Y) in ls:
+    dx, dy = np.sign([X-x, Y-y])                 
+    while (x,y) != (X+dx, Y+dy):
+        grid[dx * dy, x, y] += 1
+        x+=dx; y+=dy
+
+print((grid[0]>1).sum(), (grid.sum(0)>1).sum())
+#The grid[dx*dy,x,y] trick works because dx*dy is 0 for a horizontal or vertical line, and -1 or +1 for a diagonal.

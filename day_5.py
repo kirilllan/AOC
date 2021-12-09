@@ -18,7 +18,7 @@ def day5(arr):
 
   print(points_grid) 
 
-day5(ary)
+#day5(ary)
 
 
 
@@ -27,6 +27,8 @@ day5(ary)
 import numpy as np
 
 grid = np.zeros((2, 1000, 1000))
+print(grid)
+exit()
 ls = np.fromregex(open(0), '\d+', [('',int)]*4)
 
 for (x, y, X, Y) in ls:

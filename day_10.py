@@ -4,6 +4,8 @@ example_input=['[({(<(())[]>[[{[]{<()<>>',
 '[(()[<>])]({[<{<<[]>>(','{([(<{}[<>[]}>{[]{[(<()>','(((({<>}<{<{<>}{[]{[]{}','[[<[([]))<([[{}[[()]]]','[{[{({}]{}}([{[{{{}}([]','{<[[]]>}<{[{[{[]{()[[[]','[<(<(<(<{}))><([]([]()','<{([([[(<>()){}]>(<<{{','<{([{{}}[<[[[<>{}]]]>[]]']
 
 def day10(arr):
+  points = 0
+
   braces_open = 0
   braces_closed = 0
   square_bracket_open = 0
@@ -14,8 +16,41 @@ def day10(arr):
   angle_bracket_closed = 0
 
   for i in range(0, len(arr)):
+    braces_open = 0
+    braces_closed = 0
+    square_bracket_open = 0
+    square_bracket_closed = 0
+    curly_brace_open = 0
+    curly_brace_closed = 0
+    angle_bracket_open = 0
+    angle_bracket_closed = 0
     for j in range(0, len(arr[i])):
       if arr[i][j] == '(': braces_open += 1
+      if arr[i][j] == '[': square_bracket_open += 1
+      if arr[i][j] == '{': curly_brace_open += 1
+      if arr[i][j] == '<': angle_bracket_open += 1
+
+      if arr[i][j] == ')': 
+        braces_closed += 1
+        if braces_closed > braces_open:
+          points += 3
+          
+      if arr[i][j] == ']': 
+        square_bracket_closed += 1
+        if square_bracket_closed > square_bracket_open:
+          points += 57
+          
+      if arr[i][j] == '}': 
+        curly_brace_closed += 1
+        if curly_brace_closed > curly_brace_open:
+          points += 1197
+          
+      if arr[i][j] == '>': 
+        angle_bracket_closed += 1
+        if angle_bracket_closed > angle_bracket_open:
+          points += 25137
+          
       
+  print(points)
 
 day10(example_input)

@@ -31,26 +31,20 @@ def day10(arr):
       if arr[i][j] == '<': angle_bracket_open += 1
 
       if arr[i][j] == ')': 
-        braces_closed += 1
-        if braces_closed > braces_open:
-          points += 3
-          
+        braces_closed += 1         
       if arr[i][j] == ']': 
-        square_bracket_closed += 1
-        if square_bracket_closed > square_bracket_open:
-          points += 57
-          
+        square_bracket_closed += 1     
       if arr[i][j] == '}': 
-        curly_brace_closed += 1
-        if curly_brace_closed > curly_brace_open:
-          points += 1197
-          
+        curly_brace_closed += 1        
       if arr[i][j] == '>': 
         angle_bracket_closed += 1
-        if angle_bracket_closed > angle_bracket_open:
-          points += 25137
+
+    points += abs(braces_open - braces_closed) * 3
+    points += abs(square_bracket_open - square_bracket_closed) * 57
+    points += abs(curly_brace_open - curly_brace_closed) * 1197
+    points += abs(angle_bracket_open - angle_bracket_closed) * 25137
           
       
   print(points)
 
-day10(example_input)
+day10(example_input)#26 397, got 353 235

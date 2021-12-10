@@ -8,11 +8,11 @@ def day7(arr):
     this_time_count = 0
     for j in range(0, len(arr)):
       if i == j: continue
-      this_time_count += abs(arr[j] - i)
+      this_time_count += abs(arr[j] - arr[i])
     pos_count.append(this_time_count)
 
   print(pos_count)
   print(min(pos_count))
 
-day7(test_data)#pos 1 is 41, pos 3 is 39, pos 10 is 71
+day7(ary)#pos 1 is 41, pos 3 is 39, pos 10 is 71
 #358583 is too low

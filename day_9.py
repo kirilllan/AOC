@@ -4,52 +4,83 @@ ary=[['9987675345698765453987654321234589999899878923493212345678999998656782467
 
 def day9(arr):
   low_points_total_sum = 0
-  for i in range(1, len(arr) - 2):
-    for j in range(1, (len(''.join(arr[i])) - 6)):
-      n1 = int(arr[i][j - 1])
-      n2 = int(arr[i][j + 1])
-      n3 = int(arr[i - 1][j])
-      n4 = int(arr[i + 1][j])
-      cur_num = int(arr[i][j])
-      if n1 > cur_num and n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
+  for i in range(1, len(arr) - 1):
+    for j in range(0, len(arr[i][0])):
+      n1 = -1 # same arr, prev el
+      n2 = -1 # same arr, next el
+      n3 = -1 # prev arr, cur el
+      n4 = -1 # next arr, cur el
+      try:
+        n1 = int(arr[i][0][j - 1])
+      except IndexError:
+        n1 = -1
+      try:
+        n2 = int(arr[i][0][j + 1])
+      except IndexError:
+        n2 = -1
+      try:
+        n3 = int(arr[i - 1][0][j])
+      except IndexError:
+        n3 = -1
+      try:
+        n4 = int(arr[i + 1][0][j])
+      except IndexError:
+        n4 = -1
+      cur_num = int(arr[i][0][j])
+      if j == 0: 
+        if n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
+      elif j == 99:
+        if n1 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1    
+      else: 
+        if n1 > cur_num and n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
 
   for top_arr_indexes in range(0, 100):
     n1 = -1
     n2 = -1
     n3 = -1
     try:
-      n1 = int(''.join(arr[0])[top_arr_indexes - 1])
+      n1 = int(arr[0][0][top_arr_indexes - 1])
     except IndexError:
       n1 = -1
     try:
-      n2 = int(''.join(arr[0])[top_arr_indexes + 1])
+      n2 = int(arr[0][0][top_arr_indexes + 1])
     except IndexError:
       n2 = -1
     try:
-      n3 = int(''.join(arr[1])[top_arr_indexes])
+      n3 = int(arr[1][0][top_arr_indexes])
     except IndexError:
       n3 = -1
-    cur_num = int(''.join(arr[0])[top_arr_indexes])
-    if n1 > cur_num and n2 > cur_num and n3 > cur_num: low_points_total_sum += cur_num + 1
+    cur_num = int(arr[0][0][top_arr_indexes])
+    if top_arr_indexes == 0: 
+      if n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
+    elif top_arr_indexes == 99:
+      if n1 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1    
+    else: 
+      if n1 > cur_num and n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
 
   for bottom_arr_indexes in range(0, 100):
     n1 = -1
     n2 = -1
     n3 = -1
     try:
-      n1 = int(''.join(arr[99])[bottom_arr_indexes - 1])
+      n1 = int(arr[99][0][bottom_arr_indexes - 1])
     except IndexError:
       n1 = -1
     try:
-      n2 = int(''.join(arr[99])[bottom_arr_indexes + 1])
+      n2 = int(arr[99][0][bottom_arr_indexes + 1])
     except IndexError:
       n2 = -1
     try:
-      n3 = int(''.join(arr[98])[bottom_arr_indexes])
+      n3 = int(arr[98][0][bottom_arr_indexes])
     except IndexError:
       n3 = -1
-    cur_num = int(''.join(arr[99])[bottom_arr_indexes])
-    if n1 > cur_num and n2 > cur_num and n3 > cur_num: low_points_total_sum += cur_num + 1
+    cur_num = int(arr[99][0][bottom_arr_indexes])
+    if bottom_arr_indexes == 0: 
+      if n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
+    elif bottom_arr_indexes == 99:
+      if n1 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1    
+    else: 
+      if n1 > cur_num and n2 > cur_num and n3 > cur_num and n4 > cur_num: low_points_total_sum += cur_num + 1
 
   print(low_points_total_sum) 
   return

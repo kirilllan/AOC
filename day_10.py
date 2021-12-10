@@ -31,20 +31,27 @@ def day10(arr):
       if arr[i][j] == '<': angle_bracket_open += 1
 
       if arr[i][j] == ')': 
-        braces_closed += 1         
+        braces_closed += 1
+        if (braces_closed < braces_open and braces_closed != 0) or (square_bracket_open < square_bracket_closed and square_bracket_closed != 0) or (curly_brace_open < curly_brace_closed and curly_brace_closed != 0) or (angle_bracket_open < angle_bracket_closed and angle_bracket_closed != 0):
+          points += 3
+          
       if arr[i][j] == ']': 
-        square_bracket_closed += 1     
+        square_bracket_closed += 1
+        if (braces_closed < braces_open and braces_closed != 0) or (square_bracket_open < square_bracket_closed and square_bracket_closed != 0) or (curly_brace_open < curly_brace_closed and curly_brace_closed != 0) or (angle_bracket_open < angle_bracket_closed and angle_bracket_closed != 0):
+          points += 57
+          
       if arr[i][j] == '}': 
-        curly_brace_closed += 1        
+        curly_brace_closed += 1
+        if (braces_closed < braces_open and braces_closed != 0) or (square_bracket_open < square_bracket_closed and square_bracket_closed != 0) or (curly_brace_open < curly_brace_closed and curly_brace_closed != 0) or (angle_bracket_open < angle_bracket_closed and angle_bracket_closed != 0):
+          points += 1197
+          
       if arr[i][j] == '>': 
         angle_bracket_closed += 1
-
-    points += abs(braces_open - braces_closed) * 3
-    points += abs(square_bracket_open - square_bracket_closed) * 57
-    points += abs(curly_brace_open - curly_brace_closed) * 1197
-    points += abs(angle_bracket_open - angle_bracket_closed) * 25137
+        if (braces_closed < braces_open and braces_closed != 0) or (square_bracket_open < square_bracket_closed and square_bracket_closed != 0) or (curly_brace_open < curly_brace_closed and curly_brace_closed != 0) or (angle_bracket_open < angle_bracket_closed and angle_bracket_closed != 0):
+          points += 25137
           
       
   print(points)
 
-day10(example_input)#26 397, got 353 235
+day10(example_input)
+day10(['{([(<{}[<>[]}>{[]{[(<()>'])

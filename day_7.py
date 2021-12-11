@@ -24,7 +24,7 @@ def day7_2(arr):
     for j in range(0, len(arr)):
       if i != j: 
         this_time_count += abs(arr[j] - arr[i])
-        moves +=1
+        moves += j
     pos_count.append(this_time_count + moves)
 
   print(pos_count)

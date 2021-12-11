@@ -1,6 +1,6 @@
 # AOC
 # Advent Of Code 2021
-
+![mem img]aoc_with_new_language.png
  
 
 <!-- herro =3 My AOC 2021 solutions here
